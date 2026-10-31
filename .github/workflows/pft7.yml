@@ -1,4 +1,4 @@
-name: PFT-7 Scanner
+name: PFT-7 Scanner Telegram
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   scan:
-    runs-on: ubuntu-slim
+    runs-on: ubuntu-latest
     timeout-minutes: 4
 
     steps:
@@ -42,4 +42,5 @@ jobs:
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          TEST_TELEGRAM: ${{ github.event_name == 'workflow_dispatch' }}
         run: python main.py
